@@ -17,7 +17,7 @@ class App extends Component {
     }
   }
   componentDidMount(){
-      axios.get('/getDataArr').then(res => console.log(res.data))
+      axios.get('/getDataArr').then(res => this.setState({taskArr: res.data}))
   }
 
   toggleModal = () => this.setState({taskModal: !this.state.taskModal})

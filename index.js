@@ -19,7 +19,6 @@ massive(process.env.CONNECTION_STRING).then(db => {
 let dataArr = [];
 app.get('/getDataArr', (req, res) => {
     app.get('db').getTasks().then(response => {
-        console.log("get tasks: ", response);
         res.status(200).send(response);
     })
 })
