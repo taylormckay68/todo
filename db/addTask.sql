@@ -1,1 +1,1 @@
-insert into tasks (category, description, info, complete) values ($1, $2, $3, $4) returning *
+insert into tasks (category, priority, task, info, complete) values ($1, $2, $3, $4, $5)

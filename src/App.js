@@ -12,7 +12,8 @@ class App extends Component {
         taskModal: false,
         taskArr: [],
         category: '',
-        description: '',
+        priority: '',
+        task: '',
         info: ''
     }
   }
@@ -23,17 +24,20 @@ class App extends Component {
   toggleModal = () => this.setState({taskModal: !this.state.taskModal})
 
   handleChange = (event) => {
+      console.log(event.target.name);
       this.setState({[event.target.name]: event.target.value});
     }
 
   handleSubmit = (event) => {
-        let {category, info, description, taskArr} = this.state;
-        axios.post('/addTask', {category, info, description, complete: false}).then(res => {
+        let {category, priority, info, task, taskArr} = this.state;
+        console.log(category, priority, info, task);
+        axios.post('/addTask', {category, priority, info, task, complete: false}).then(res => {
             this.setState({
                 taskArr: res.data,
                 category: '',
+                priority: '',
                 info: '',
-                description: ''
+                task: ''
             })
         })
         this.toggleModal();

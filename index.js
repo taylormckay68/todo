@@ -24,8 +24,9 @@ app.get('/getDataArr', (req, res) => {
 })
 
 app.post('/addTask', (req, res) => {
-    let {category, description, info, complete} = req.body;
-    app.get('db').addTask([category, description, info, complete]).then(() => {
+    let {category, priority, task, info, complete} = req.body;
+    console.log(req.body);
+    app.get('db').addTask([category, priority, task, info, complete]).then(() => {
         app.get('db').getTasks().then(response => res.status(200).send(response))
     }) 
 })
