@@ -6,10 +6,9 @@ class TaskModal extends Component{
         super(props);
         this.state = {
             taskCategories: ['Work', 'Personal', 'Shopping'],
-            priorities: ['Low', 'Medium', 'High']
+            priorities: ['Low', 'Medium', 'High'],
         }
     }
-
     
     render(){
         return(

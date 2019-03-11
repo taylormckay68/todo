@@ -46,8 +46,9 @@ export const ButtonWrapper = styled.div`
 export const SubmitButton = styled.button`
     width: 100px;
     height: 30px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 4px;
+    background-color: #039EFC;
 `
 export const InputText = styled.p`
     font-size: 16px;

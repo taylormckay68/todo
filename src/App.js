@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import axios from 'axios';
+import {AppWrapper} from './components/styled-components/App';
 import Navbar from './components/Navbar';
 import TaskModal from './components/TaskModal';
 import TaskList from './components/TaskList';
@@ -24,7 +25,6 @@ class App extends Component {
   toggleModal = () => this.setState({taskModal: !this.state.taskModal})
 
   handleChange = (event) => {
-      console.log(event.target.name);
       this.setState({[event.target.name]: event.target.value});
     }
 
@@ -43,14 +43,22 @@ class App extends Component {
         this.toggleModal();
         event.preventDefault();
   }
-
+  taskClick = (id) => {
+      let arr = this.state.taskArr.filter((el) => el.id === id)
+        this.setState({
+            category: arr[0].category,
+            priority: arr[0].priority,
+            task: arr[0].task,
+            info: arr[0].info
+        }, this.toggleModal())
+  }
   render(){
         return(
-        <div className="App">
+        <AppWrapper className="app-wrapper">
             <TaskModal {...this.state} toggle={this.toggleModal} handleChange={this.handleChange} handleSubmit={this.handleSubmit} className="task-modal"/>
             <Navbar className="navbar" toggle={this.toggleModal}/>
-            <TaskList taskArr={this.state.taskArr}/>
-        </div>
+            <TaskList className="task-list" taskArr={this.state.taskArr} taskClick={this.taskClick}/>
+        </AppWrapper>
         );
     }
 }

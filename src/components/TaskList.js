@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TaskListWrapper} from './styled-components/TaskList';
+import {TaskListWrapper, TaskWrapper} from './styled-components/TaskList';
 
 class TaskList extends Component{
     constructor(props){
@@ -8,8 +8,13 @@ class TaskList extends Component{
     }
     render(){
         return(
-            <TaskListWrapper>
-                {JSON.stringify(this.props.taskArr)}
+            <TaskListWrapper className="task-list-wrapper">
+                {this.props.taskArr.map((e,i) => {
+                    console.log(e.id);
+                    return(
+                        <TaskWrapper name={e.id} onClick={() => this.props.taskClick(e.id)}>{e.task}</TaskWrapper>
+                    )
+                })}
             </TaskListWrapper>
         )
     }
