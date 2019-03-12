@@ -20,6 +20,7 @@ export const Modal = styled.div`
     box-sizing: border-box;
     transform: ${props => props.taskModal && 'translateX(75vw)'};
     transition: transform .3s ease-in-out;
+    z-index: 2;
 `
 
 export const ModalWrapper= styled.div`
@@ -43,12 +44,14 @@ export const InfoWrapper = styled.div`
 export const ButtonWrapper = styled.div`
 
 `
-export const SubmitButton = styled.button`
+export const ModalButton = styled.button`
     width: 100px;
     height: 30px;
-    /* border: 1px solid black; */
     border-radius: 4px;
     background-color: #039EFC;
+    &:disabled{
+        background-color: lightgray;
+    }
 `
 export const InputText = styled.p`
     font-size: 16px;

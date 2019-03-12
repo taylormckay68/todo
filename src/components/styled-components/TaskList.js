@@ -9,7 +9,22 @@ export const TaskListWrapper = styled.div`
 `
 
 export const TaskWrapper = styled.div`
-    height: 25px;
+    box-sizing: border-box;
+    height: 35px;
     width: 100%;
     border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+`
+export const TaskInfoWrapper = styled.div`
+    width: 100%;
+    cursor: pointer;
+`
+export const TaskText = styled.p`
+    line-height: 35px;
+    margin-left: 20px;
+`
+export const TaskLabel = styled.label`
+    display: flex;
 `

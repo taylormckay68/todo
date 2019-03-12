@@ -1,1 +1,1 @@
-insert into tasks (category, priority, task, info, complete) values ($1, $2, $3, $4, $5)
+insert into tasks (category, priority, task, info, complete, time) values ($1, $2, $3, $4, $5, now())

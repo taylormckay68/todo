@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {TaskListWrapper, TaskWrapper} from './styled-components/TaskList';
+import {TaskListWrapper, TaskWrapper, TaskText, TaskInfoWrapper, TaskLabel} from './styled-components/TaskList';
+import Switch from "react-switch";
 
 class TaskList extends Component{
     constructor(props){
@@ -10,9 +11,20 @@ class TaskList extends Component{
         return(
             <TaskListWrapper className="task-list-wrapper">
                 {this.props.taskArr.map((e,i) => {
-                    console.log(e.id);
                     return(
-                        <TaskWrapper name={e.id} onClick={() => this.props.taskClick(e.id)}>{e.task}</TaskWrapper>
+                        <TaskWrapper className="task-wrapper" name={e.id} /*onClick={() => this.props.taskClick(e.id)}*/>
+                            <TaskLabel className="task-label">
+                                <Switch 
+                                    id={e.id}
+                                    onChange={this.props.handleToggleCheck} 
+                                    checked={e.complete} />
+                            </TaskLabel>
+                            <TaskInfoWrapper 
+                                className="task-info-wrapper"
+                                onClick={() => this.props.taskClick(e.id)}>
+                                <TaskText className="task-text">{e.task}</TaskText>
+                            </TaskInfoWrapper>
+                        </TaskWrapper>
                     )
                 })}
             </TaskListWrapper>
