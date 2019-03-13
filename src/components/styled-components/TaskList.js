@@ -19,6 +19,7 @@ export const TaskInfoWrapper = styled.div`
     width: 100%;
     cursor: pointer;
     display: flex;
+    opacity: ${props => props.complete && '.4'};
 `
 export const TaskText = styled.p`
     line-height: 35px;

@@ -26,6 +26,7 @@ class TaskList extends Component{
                             </TaskLabel>
                             <TaskInfoWrapper 
                                 className="task-info-wrapper"
+                                complete={e.complete}
                                 onClick={() => this.props.taskClick(e.id)}>
                                 <CategoryText className="category-text">{e.category}</CategoryText>
                                 <TaskText className="task-text">{e.task}</TaskText>

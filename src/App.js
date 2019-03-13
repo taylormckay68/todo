@@ -110,7 +110,7 @@ class App extends Component {
                 handleDelete={this.handleDelete}/>
             <Navbar className="navbar" toggle={this.toggleModal}/>
             <TaskList 
-                className="task-list" 
+                className="task-list"
                 taskArr={this.state.taskArr} 
                 taskClick={this.taskClick}
                 handleToggleCheck={this.handleToggleCheck}/>
