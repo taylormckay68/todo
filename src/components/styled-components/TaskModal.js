@@ -10,15 +10,15 @@ const slideIn = keyframes`
 `
 
 export const Modal = styled.div`
-    height: 50vh;
-    width: 50vw;
+    height: 285px;
+    width: 90vw;
     background-color: white;
     border: 1px solid black;
     position: fixed;
-    top: calc(50vh/2);
-    left: calc(-50vw);
+    top: calc((100vh - 285px)/2);
+    left: -90vw;
     box-sizing: border-box;
-    transform: ${props => props.taskModal && 'translateX(75vw)'};
+    transform: ${props => props.taskModal && 'translateX(95vw)'};
     transition: transform .3s ease-in-out;
     z-index: 2;
 `
@@ -26,14 +26,16 @@ export const Modal = styled.div`
 export const ModalWrapper= styled.div`
     display: flex;
     flex-direction: column;
-    padding: 24px;
+    padding: 16px;
 `
 
 export const CategoryWrapper = styled.div`
-
+    display: flex;
+    margin-bottom: 10px;
 `
 export const PriorityWrapper = styled.div`
-
+    display: flex;
+    margin-bottom: 10px;
 `
 export const DescriptionWrapper = styled.div`
 
@@ -67,7 +69,9 @@ export const TextBox = styled.textarea`
     resize: none;
 `
 export const SelectWrapper = styled.select`
-
+    width: 75px;
+    padding-left: 5px;
+    margin-left: 10px;
 `
 export const Option = styled.option`
 

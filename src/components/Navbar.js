@@ -14,7 +14,7 @@ class Navbar extends Component{
         return(
             <NavWrapper className="nav-wrapper">
                 <NavContentContainer className="nav-content-container">
-                    <NavText className="nav-text">Workfront Todo List</NavText>
+                    <NavText className="nav-text">Workfront To-do List</NavText>
                     <AddButton className="add-button" onClick={this.props.toggle}>Add</AddButton>
                 </NavContentContainer>
             </NavWrapper>

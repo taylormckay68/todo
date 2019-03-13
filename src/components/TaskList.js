@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TaskListWrapper, TaskWrapper, TaskText, TaskInfoWrapper, TaskLabel} from './styled-components/TaskList';
+import {TaskListWrapper, TaskWrapper, TaskText, TaskInfoWrapper, TaskLabel, CategoryText, InfoText, HeaderWrapper, CategoryHeader, InfoHeader, TaskHeader} from './styled-components/TaskList';
 import Switch from "react-switch";
 
 class TaskList extends Component{
@@ -10,6 +10,11 @@ class TaskList extends Component{
     render(){
         return(
             <TaskListWrapper className="task-list-wrapper">
+                <HeaderWrapper className="header-wrapper">
+                    <CategoryHeader className="category-header">Category</CategoryHeader>
+                    <TaskHeader className="task-header">Task</TaskHeader>
+                    <InfoHeader className="info-header">Additional Info</InfoHeader>
+                </HeaderWrapper>
                 {this.props.taskArr.map((e,i) => {
                     return(
                         <TaskWrapper className="task-wrapper" name={e.id} /*onClick={() => this.props.taskClick(e.id)}*/>
@@ -22,7 +27,9 @@ class TaskList extends Component{
                             <TaskInfoWrapper 
                                 className="task-info-wrapper"
                                 onClick={() => this.props.taskClick(e.id)}>
+                                <CategoryText className="category-text">{e.category}</CategoryText>
                                 <TaskText className="task-text">{e.task}</TaskText>
+                                <InfoText className="info-text">{e.info}</InfoText>
                             </TaskInfoWrapper>
                         </TaskWrapper>
                     )

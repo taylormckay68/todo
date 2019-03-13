@@ -35,4 +35,5 @@ export const AddButton = styled.button`
 export const NavText = styled.h1`
     color: white;
     margin: auto;
+    font-size: 35px;
 `
