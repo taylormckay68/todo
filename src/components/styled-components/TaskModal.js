@@ -1,26 +1,30 @@
 import styled, {keyframes} from 'styled-components';
 
-const slideIn = keyframes`
-    0% {
-    transform: translateX(0);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-`
-
+// export const ModalCover = styled.div`
+//     height: 100vh;
+//     width: 100vw;
+//     background-color: black;
+//     opacity: .2;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     position: fixed;
+//     transform: ${props => !props.taskModal && 'translateX(-125vw)'};
+//     transition: transform .3s ease-in-out;
+// `
 export const Modal = styled.div`
     height: 285px;
     width: 90vw;
     background-color: white;
     border: 1px solid black;
     position: fixed;
-    top: calc((100vh - 285px)/2);
-    left: -90vw;
     box-sizing: border-box;
-    transform: ${props => props.taskModal && 'translateX(95vw)'};
+    transform: ${props => !props.taskModal && 'translateX(-125vw)'};
     transition: transform .3s ease-in-out;
     z-index: 2;
+    @media (min-width: 800px) {
+        width: 800px;
+    }
 `
 
 export const ModalWrapper= styled.div`

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import axios from 'axios';
-import {AppWrapper} from './components/styled-components/App';
+import {AppWrapper, TaskCover} from './components/styled-components/App';
 import Navbar from './components/Navbar';
 import TaskModal from './components/TaskModal';
 import TaskList from './components/TaskList';
@@ -24,7 +24,15 @@ class App extends Component {
         axios.get('/getDataArr').then(res => this.setState({taskArr: res.data}))
     }
 
-    toggleModal = () => this.setState({taskModal: !this.state.taskModal})
+    toggleModal = () => this.setState({
+        taskModal: !this.state.taskModal,
+        category: '',
+        priority: '',
+        info: '',
+        task: '',
+        id: '',
+        update: false
+    })
 
     handleChange = (event) => {this.setState({[event.target.name]: event.target.value});}
 
@@ -88,6 +96,10 @@ class App extends Component {
     render(){
         return(
         <AppWrapper className="app-wrapper">
+            <TaskCover 
+                className="task-cover"
+                onClick={this.toggleModal}
+                taskModal={this.state.taskModal}/>
             <TaskModal 
                 className="task-modal"
                 {...this.state} 

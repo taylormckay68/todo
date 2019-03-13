@@ -23,11 +23,14 @@ export const TaskInfoWrapper = styled.div`
 export const TaskText = styled.p`
     line-height: 35px;
     margin-left: 10px;
-    width: calc(100vw - 158px);
+    width: calc(100vw - 168px);
     overflow: hidden;
     text-overflow: ellipsis;
     @media (min-width: 450px) {
         width: calc((100vw - 178px)/2);
+    }
+    @media (min-width: 800px) {
+        width: calc((800px - 178px)/2);
     }
 `
 export const CategoryText = styled.p`
@@ -45,6 +48,9 @@ export const InfoText = styled.p`
     @media (min-width: 450px) {
         display: block;
         width: calc((100vw - 178px)/2);
+    }
+    @media (min-width: 800px) {
+        width: calc((800px - 178px)/2);
     }
 `
 export const TaskLabel = styled.label`
