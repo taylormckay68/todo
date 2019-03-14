@@ -27,6 +27,8 @@ export const TaskText = styled.p`
     width: calc(100vw - 168px);
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: ${props => props.complete && 'line-through'};
     @media (min-width: 450px) {
         width: calc((100vw - 178px)/2);
     }
@@ -38,6 +40,7 @@ export const CategoryText = styled.p`
     width: 72px;
     line-height: 35px;
     margin-left: 10px;
+    text-decoration: ${props => props.complete && 'line-through'};
 `
 export const InfoText = styled.p`
     line-height: 35px;
@@ -46,6 +49,8 @@ export const InfoText = styled.p`
     display: none;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: ${props => props.complete && 'line-through'};
     @media (min-width: 450px) {
         display: block;
         width: calc((100vw - 178px)/2);
@@ -67,23 +72,23 @@ export const CategoryHeader = styled.div`
     margin-left: 76px;
     width: 72px;
     line-height: 35px;
-    border-bottom: 1px solid;
+    font-weight: bolder;
+
 `
 export const TaskHeader = styled.div`
     width: calc(100vw - 168px);
     line-height: 35px;
     margin-left: 10px;
-    border-bottom: 1px solid;
+    font-weight: bolder;
     @media (min-width: 450px) {
         width: calc(50% - 89px);
     }
 `
 export const InfoHeader = styled.div`
-    /* width: calc((100% - 197px)/2); */
     line-height: 35px;
     margin-left: 10px;
     display: none;
-    border-bottom: 1px solid;
+    font-weight: bolder;
     @media (min-width: 450px) {
         display: block;
         width: calc(50% - 89px);

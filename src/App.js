@@ -4,6 +4,7 @@ import {AppWrapper, TaskCover} from './components/styled-components/App';
 import Navbar from './components/Navbar';
 import TaskModal from './components/TaskModal';
 import TaskList from './components/TaskList';
+import FilterBar from './components/FilterBar';
 
 class App extends Component {
     constructor(props){
@@ -19,17 +20,29 @@ class App extends Component {
             info: '',
             id: '',
             update: false,
-            selectedOption: null
+            selectedOption: null,
+            filter: null,
+            addCat: false,
+            categories: []
         }
     }
     componentDidMount(){
         axios.get('/getDataArr').then(res => this.setState({taskArr: res.data}))
+        axios.get('/getCats').then(res => {
+            let categories = res.data.map(e => e.category);
+            this.setState({categories})
+        })
     }
     handleCatChange = (selectedCat) => {
         this.setState({ selectedCat, category: selectedCat.value });
     }
     handlePriorityChange = (selectedPriority) => {
         this.setState({ selectedPriority, priority: selectedPriority.value })
+    }
+    handleFilterChange = (filter) => {
+        axios.post('/filterData', {category: filter.value}).then(res => {
+            this.setState({filter, taskArr: res.data})
+        })
     }
     toggleModal = () => this.setState({
         taskModal: !this.state.taskModal,
@@ -41,7 +54,7 @@ class App extends Component {
         task: '',
         id: '',
         update: false,
-        selectedOption: null
+        selectedOption: null,
     })
 
     handleTextChange = (e) => {
@@ -50,7 +63,6 @@ class App extends Component {
 
     handleSubmit = (event) => {
             let {category, priority, info, task, taskArr} = this.state;
-            console.log(category, priority);
             axios.post('/addTask', {category, priority, info, task, complete: false}).then(res => {
                 this.setState({
                     taskArr: res.data,
@@ -108,6 +120,16 @@ class App extends Component {
                 update: true
             }, this.toggleModal())
     }
+    toggleAddCategory = () => {
+        this.setState({addCat: !this.state.addCat})
+    }
+    addCategory = (category) => {
+        axios.post('/addCat', {category}).then(res => {
+            let categories = res.data.map(e => e.category)
+            this.setState({addCat: !this.state.addCat, categories})
+        })
+    }
+
     render(){
         return(
         <AppWrapper className="app-wrapper">
@@ -124,8 +146,15 @@ class App extends Component {
                 handleUpdate={this.handleUpdate}
                 handleDelete={this.handleDelete}
                 handleCatChange={this.handleCatChange}
-                handlePriorityChange={this.handlePriorityChange}/>
+                handlePriorityChange={this.handlePriorityChange}
+                toggleAddCategory={this.toggleAddCategory}
+                addCategory={this.addCategory}/>
             <Navbar className="navbar" toggle={this.toggleModal}/>
+            <FilterBar 
+                filter={this.state.filter}
+                categories={this.state.categories} 
+                // taskArr={this.state.taskArr}
+                handleFilterChange={this.handleFilterChange}/>
             <TaskList 
                 className="task-list"
                 taskArr={this.state.taskArr} 

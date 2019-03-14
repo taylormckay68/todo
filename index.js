@@ -47,5 +47,28 @@ app.post('/deleteTask', (req, res) => {
         app.get('db').getTasks().then(response => res.status(200).send(response))
     })
 })
+app.post('/filterData', (req, res) => {
+    if(req.body.category === 'All'){
+        app.get('db').getTasks().then(response => res.status(200).send(response))
+    }else {
+        app.get('db').filterTasks(['category', req.body.category]).then(response => res.status(200).send(response))
+    }
+})
+app.post('/addCat', (req, res) => {
+    if(req.body.category.length) {
+        app.get('db').addCat([req.body.category]).then(() => {
+            app.get('db').getCats().then(response => {
+                res.status(200).send(response);
+            })
+        })
+    } else {
+        app.get('db').getCats().then(response => {
+            res.status(200).send(response);
+        })
+    }
+})
+app.get('/getCats', (req, res) => {
+    app.get('db').getCats().then(response => res.status(200).send(response))
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

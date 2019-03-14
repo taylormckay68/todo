@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select'
-import {Modal, ModalWrapper, CategoryWrapper, DescriptionWrapper, InfoWrapper, ButtonWrapper, ModalButton, InputText, PriorityWrapper, TextBox, customStyles} from './styled-components/TaskModal';
+import {customStyles, priorityOptions} from '../utils';
+import {Modal, ModalWrapper, CategoryWrapper, DescriptionWrapper, InfoWrapper, ButtonWrapper, ModalButton, InputText, PriorityWrapper, TextBox, AddNewButton, AddNewWrapper, NewCatWrapper, AddNewInput, AddButton} from './styled-components/TaskModal';
 
 class TaskModal extends Component{
     constructor(props){
@@ -8,22 +9,22 @@ class TaskModal extends Component{
         this.state = {
             taskCategories: ['Work', 'Personal', 'Shopping'],
             priorities: ['Low', 'Medium', 'High'],
-            selectedOption: null
+            category: ''
         }
     }
+
+    handleCatInput = (e) => {
+        this.setState({category: e.target.value})
+    }
+    handleCatSubmit = (cat) => {
+        this.props.addCategory(cat);
+        this.setState({category: ''})
+    }
+    
     
     render(){
-        let {category, priority, update, task, info} = this.props;
-        const catOptions = [
-            {value: 'Work', label: 'Work'},
-            {value: 'Personal', label: 'Personal'},
-            {value: 'Shopping', label: 'Shopping'}
-        ];
-        const priorityOptions = [
-            {value: 'Low', label: 'Low'},
-            {value: 'Medium', label: 'Medium'},
-            {value: 'High', label: 'High'}
-        ];
+        let {category, priority, update, task, info, categories} = this.props;
+        let catOptions = categories.map(e => {return {value: e, label: e}})
         return(
             <Modal taskModal={this.props.taskModal} className="modal">
                 <ModalWrapper className="modal-wrapper">
@@ -36,6 +37,17 @@ class TaskModal extends Component{
                             onChange={this.props.handleCatChange}
                             />
                     </CategoryWrapper>
+                    <AddNewWrapper className="add-new-wrapper">
+                        <AddNewButton 
+                            className="add-new-button"
+                            onClick={this.props.toggleAddCategory}>
+                            Add category
+                        </AddNewButton>
+                        {this.props.addCat && <NewCatWrapper className="new-cat-wrapper">
+                            <AddNewInput className="add-new-input" onChange={this.handleCatInput}/>
+                            <AddButton className='add-button' onClick={() => this.handleCatSubmit(this.state.category)}>Add</AddButton>
+                        </NewCatWrapper>}
+                    </AddNewWrapper>
                     <PriorityWrapper className="priority-wrapper">
                         <InputText className="input-text">Priority: </InputText>
                         <Select 
@@ -47,11 +59,11 @@ class TaskModal extends Component{
                     <DescriptionWrapper className="description-wrapper">
                         <InputText className="input-text">Task: </InputText>
                         <TextBox 
-                            className="input-box"
+                            className="text-box"
                             value={this.props.task} 
                             name="task" 
                             width={'100%'} 
-                            height={'16px'}
+                            height={'20px'}
                             onChange={(e) => this.props.handleTextChange(e)}/>
                     </DescriptionWrapper>
                     <InfoWrapper className="info-wrapper">

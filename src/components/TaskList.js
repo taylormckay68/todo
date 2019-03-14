@@ -17,10 +17,10 @@ class TaskList extends Component{
                 </HeaderWrapper>
                 {this.props.taskArr.map((e,i) => {
                     return(
-                        <TaskWrapper className="task-wrapper" name={e.id} /*onClick={() => this.props.taskClick(e.id)}*/>
+                        <TaskWrapper className="task-wrapper" key={i} name={e.id}>
                             <TaskLabel className="task-label">
                                 <Switch 
-                                    id={e.id}
+                                    id={e.id.toString()}
                                     onChange={this.props.handleToggleCheck} 
                                     checked={e.complete} />
                             </TaskLabel>
@@ -28,9 +28,9 @@ class TaskList extends Component{
                                 className="task-info-wrapper"
                                 complete={e.complete}
                                 onClick={() => this.props.taskClick(e.id)}>
-                                <CategoryText className="category-text">{e.category}</CategoryText>
-                                <TaskText className="task-text">{e.task}</TaskText>
-                                <InfoText className="info-text">{e.info}</InfoText>
+                                <CategoryText className="category-text" complete={e.complete}>{e.category}</CategoryText>
+                                <TaskText className="task-text" complete={e.complete}>{e.task}</TaskText>
+                                <InfoText className="info-text" complete={e.complete}>{e.info}</InfoText>
                             </TaskInfoWrapper>
                         </TaskWrapper>
                     )

@@ -2,7 +2,7 @@ import styled, {keyframes} from 'styled-components';
 import ReactSelect from 'react-select';
 
 export const Modal = styled.div`
-    height: 285px;
+    height: 340px;
     width: 90vw;
     background-color: white;
     border: 1px solid black;
@@ -20,10 +20,10 @@ export const Modal = styled.div`
 export const ModalWrapper= styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100%;
     box-sizing: border-box;
-    align-content: space-around;
+    /* align-content: space-around; */
     padding: 12px;
 `
 
@@ -63,43 +63,27 @@ export const TextBox = styled.textarea`
     box-sizing: border-box;
     border-radius: 2px;
 `
-export const customStyles = {
-    control: (provided, state) => ({
-        ...provided,
-        background: state.isFocused ? '#CED1D5' : '#E7E8EA',
-        border: '0',
-        width: '175px',
-        'border-radius': '2px',
-        'box-shadow': 'none',
-        'min-height': '23px'
-    }),
-    valueContainer: provided => ({
-        ...provided,
-        color: '#2f3337',
-        'font-size': '14px',
-        padding: '0 0 0 12px'
-    }),
-    dropdownIndicator: provided => ({
-        ...provided,
-        color: '#2f3337',
-        padding: '0 16px'
-    }),
-    indicatorSeparator: () => ({
-        display: 'none'
-    }),
-    menu: provided => ({
-        ...provided,
-        color: '#2f3337',
-        'border-radius': '2px',
-        'box-shadow': '0 1px 3px rgba(0, 0, 0, 0.2)'
-    }),
-    option: (provided, state) => ({
-        ...provided,
-        color: state.isHovered ? 'white' : '#2f3337',
-        'background-color': state.isSelected ? '#F0F7FA' : 'white',
-        '&:hover': {
-            'background-color': '#0485CC',
-            color: 'white'
-        }
-    })
-};
+export const AddNewWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 255px;
+    align-items: flex-end;
+    height: max-content;
+    justify-content: space-between;
+`
+export const AddNewButton = styled.button`
+    border: 1px solid;
+    width: 175px;
+`
+export const NewCatWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 175px;
+    margin-top: 5px;
+`
+export const AddNewInput = styled.input`
+    border: 1px solid;
+`
+export const AddButton = styled.button`
+    border: 1px solid;
+`

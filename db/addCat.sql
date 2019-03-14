@@ -1,0 +1,1 @@
+insert into categories (category) values ($1) returning *
