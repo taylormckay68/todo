@@ -7,9 +7,10 @@ export default function FilterBar(props){
     let catOptions = props.categories.map(e => {return {value: e, label: e}})
     const options = [{value: 'All', label: 'All'}, ...catOptions]
     return(
-        <FilterWrapper>
-            <FilterText>Filter category: </FilterText>
+        <FilterWrapper className="filter-wrapper">
+            <FilterText className="filter-text">Filter category: </FilterText>
             <Select 
+                className="filter-select"
                 styles={customStyles} 
                 options={options} 
                 value={props.filter}

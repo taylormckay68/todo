@@ -7,7 +7,8 @@ export const FilterWrapper = styled.div`
     display: flex;
     align-items: center;
     padding: 0 10px;
+    box-sizing: border-box;
 `
 export const FilterText = styled.p`
-    
+
 `

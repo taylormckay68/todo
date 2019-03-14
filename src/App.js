@@ -21,7 +21,7 @@ class App extends Component {
             id: '',
             update: false,
             selectedOption: null,
-            filter: null,
+            filter: {value: 'All', label: 'All'},
             addCat: false,
             categories: []
         }
@@ -33,17 +33,17 @@ class App extends Component {
             this.setState({categories})
         })
     }
-    handleCatChange = (selectedCat) => {
-        this.setState({ selectedCat, category: selectedCat.value });
-    }
-    handlePriorityChange = (selectedPriority) => {
-        this.setState({ selectedPriority, priority: selectedPriority.value })
-    }
+
+    handleCatChange = (selectedCat) => this.setState({ selectedCat, category: selectedCat.value });
+
+    handlePriorityChange = (selectedPriority) => this.setState({ selectedPriority, priority: selectedPriority.value })
+
     handleFilterChange = (filter) => {
         axios.post('/filterData', {category: filter.value}).then(res => {
             this.setState({filter, taskArr: res.data})
         })
     }
+
     toggleModal = () => this.setState({
         taskModal: !this.state.taskModal,
         category: '',
@@ -57,23 +57,21 @@ class App extends Component {
         selectedOption: null,
     })
 
-    handleTextChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-    }
+    handleTextChange = (e) => this.setState({[e.target.name]: e.target.value})
 
-    handleSubmit = (event) => {
-            let {category, priority, info, task, taskArr} = this.state;
+    handleSubmit = () => {
+            let {category, priority, info, task} = this.state;
             axios.post('/addTask', {category, priority, info, task, complete: false}).then(res => {
                 this.setState({
-                    taskArr: res.data,
                     category: '',
                     priority: '',
                     info: '',
                     task: ''
                 })
+            }).then(() => {
+                this.handleFilterChange(this.state.filter)
+                this.toggleModal();
             })
-            this.toggleModal();
-            event.preventDefault();
     }
     handleToggleCheck = (checked, event , id) => {
         axios.post('/toggleTask', {id, checked}).then(res => this.setState({taskArr: res.data}))
@@ -81,9 +79,7 @@ class App extends Component {
     handleUpdate = () => {
         let {id, task, info, priority, category} = this.state;
         axios.post('/updateTask', {id, task, info, priority, category}).then(res => {
-            this.toggleModal();
             this.setState({
-                taskArr: res.data,
                 category: '',
                 priority: '',
                 info: '',
@@ -91,13 +87,14 @@ class App extends Component {
                 id: '',
                 update: false
             })
+        }).then(() => {
+            this.handleFilterChange(this.state.filter);
+            this.toggleModal();
         })
     }
     handleDelete = () => {
         axios.post('/deleteTask', {id: this.state.id}).then(res => {
-            this.toggleModal();
             this.setState({
-                taskArr: res.data,
                 category: '',
                 priority: '',
                 info: '',
@@ -105,6 +102,9 @@ class App extends Component {
                 id: '',
                 update: false
             })
+        }).then(() => {
+            this.handleFilterChange(this.state.filter);
+            this.toggleModal();
         })
     }
     taskClick = (id) => {
@@ -153,7 +153,6 @@ class App extends Component {
             <FilterBar 
                 filter={this.state.filter}
                 categories={this.state.categories} 
-                // taskArr={this.state.taskArr}
                 handleFilterChange={this.handleFilterChange}/>
             <TaskList 
                 className="task-list"

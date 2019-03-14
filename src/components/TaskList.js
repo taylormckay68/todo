@@ -16,7 +16,6 @@ class TaskList extends Component{
                     <InfoHeader className="info-header">Additional Info</InfoHeader>
                 </HeaderWrapper>
                 {this.props.taskArr.map((e,i) => {
-                    console.log(e.priority);
                     return(
                         <TaskWrapper className="task-wrapper" key={i} name={e.id} priority={e.priority}>
                             <TaskLabel className="task-label">
