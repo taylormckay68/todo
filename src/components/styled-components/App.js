@@ -12,8 +12,6 @@ export const AppWrapper = styled.div`
 export const TaskCover = styled.div`
     height: 100vh;
     width: 100vw;
-    background-color: black;
-    opacity: .2;
     display: flex;
     justify-content: center;
     align-items: center;

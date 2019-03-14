@@ -17,6 +17,6 @@ p {
   margin: 0;
 }
 
-select {
-  /* -webkit-appearance: none; */
+button {
+  border: none;
 }

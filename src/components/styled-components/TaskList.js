@@ -13,7 +13,6 @@ export const TaskWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    /* padding: 0 10px; */
 `
 export const TaskInfoWrapper = styled.div`
     width: 100%;
@@ -24,28 +23,31 @@ export const TaskInfoWrapper = styled.div`
 export const TaskText = styled.p`
     line-height: 35px;
     margin-left: 10px;
-    width: calc(100vw - 168px);
+    width: calc(100vw - 200px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-decoration: ${props => props.complete && 'line-through'};
     @media (min-width: 450px) {
-        width: calc((100vw - 178px)/2);
+        width: calc((100vw - 205px)/2);
     }
     @media (min-width: 800px) {
-        width: calc((800px - 178px)/2);
+        width: calc((800px - 205px)/2);
     }
 `
 export const CategoryText = styled.p`
-    width: 72px;
+    width: 100px;
     line-height: 35px;
     margin-left: 10px;
     text-decoration: ${props => props.complete && 'line-through'};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `
 export const InfoText = styled.p`
     line-height: 35px;
     margin-left: 10px;
-    width: calc((100% - 106px)/2);
+    width: calc((100% - 136px)/2);
     display: none;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,10 +55,10 @@ export const InfoText = styled.p`
     text-decoration: ${props => props.complete && 'line-through'};
     @media (min-width: 450px) {
         display: block;
-        width: calc((100vw - 178px)/2);
+        width: calc((100vw - 205px)/2);
     }
     @media (min-width: 800px) {
-        width: calc((800px - 178px)/2);
+        width: calc((800px - 205px)/2);
     }
 `
 export const TaskLabel = styled.label`
@@ -69,14 +71,14 @@ export const HeaderWrapper = styled.div`
     display: flex;
 `
 export const CategoryHeader = styled.div`
-    margin-left: 76px;
-    width: 72px;
+    margin-left: 55px;
+    width: 100px;
     line-height: 35px;
     font-weight: bolder;
 
 `
 export const TaskHeader = styled.div`
-    width: calc(100vw - 168px);
+    width: calc(100vw - 155px);
     line-height: 35px;
     margin-left: 10px;
     font-weight: bolder;
@@ -93,4 +95,20 @@ export const InfoHeader = styled.div`
         display: block;
         width: calc(50% - 89px);
     }
+`
+export const PriorityDot = styled.div`
+    height: 10px;
+    width: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: ${props => {
+        if(props.priority === 'High') return 'rgba(255,0,0)'
+        if(props.priority === 'Medium') return 'rgba(255,255,0)'
+        if(props.priority === 'Low') return 'green'
+        }
+    };
+`
+export const PriorityWrapper = styled.div`
+    display: flex;
+    align-items: center;
 `

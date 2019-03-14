@@ -84,7 +84,7 @@ class TaskModal extends Component{
                             <ModalButton className="update" disabled={(!this.props.category || !task || !priority ? true : false)} onClick={this.props.handleSubmit}>
                             Add Task
                             </ModalButton>}
-                        {this.props.update && <ModalButton onClick={this.props.handleDelete}>Delete</ModalButton>}
+                        {this.props.update && <ModalButton margin={'10px'} onClick={this.props.handleDelete}>Delete</ModalButton>}
                     </ButtonWrapper>
                 </ModalWrapper>
             </Modal>

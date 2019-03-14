@@ -46,7 +46,11 @@ export const ModalButton = styled.button`
     width: 100px;
     height: 30px;
     border-radius: 2px;
-    background-color: #039EFC;
+    background-color: rgb(4, 122, 185);
+    color: white;
+    font-size: 14px;
+    font-weight: bolder;
+    margin-left: ${props => props.margin ? props.margin : '0'};
     &:disabled{
         background-color: lightgray;
     }
@@ -61,7 +65,7 @@ export const TextBox = styled.textarea`
     width: ${props => props.width ? props.width : 'initial'};
     resize: none;
     box-sizing: border-box;
-    border-radius: 2px;
+    border-radius: 4px;
 `
 export const AddNewWrapper = styled.div`
     display: flex;
@@ -72,8 +76,12 @@ export const AddNewWrapper = styled.div`
     justify-content: space-between;
 `
 export const AddNewButton = styled.button`
-    border: 1px solid;
     width: 175px;
+    background-color: rgb(4, 122, 185);
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+    border-radius: 4px;
 `
 export const NewCatWrapper = styled.div`
     display: flex;
@@ -83,7 +91,11 @@ export const NewCatWrapper = styled.div`
 `
 export const AddNewInput = styled.input`
     border: 1px solid;
+    border-radius: 4px;
 `
 export const AddButton = styled.button`
-    border: 1px solid;
+    background-color: rgb(4, 122, 185);
+    color: white;
+    font-weight: bolder;
+    border-radius: 4px;
 `
