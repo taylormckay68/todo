@@ -8,6 +8,7 @@ class TaskModal extends Component{
         this.state = {
             taskCategories: ['Work', 'Personal', 'Shopping'],
             priorities: ['Low', 'Medium', 'High'],
+            selectedOption: null
         }
     }
     
@@ -23,23 +24,25 @@ class TaskModal extends Component{
             {value: 'Medium', label: 'Medium'},
             {value: 'High', label: 'High'}
         ];
-
         return(
             <Modal taskModal={this.props.taskModal} className="modal">
                 <ModalWrapper className="modal-wrapper">
                     <CategoryWrapper className="category-wrapper">
                         <InputText className="input-text">Category: </InputText>
                         <Select 
+                            value={this.props.selectedCat}
                             options={catOptions} 
                             styles={customStyles} 
-                            onChange={(e) => this.props.handleDropdownChange(e, 'category')}/>
+                            onChange={this.props.handleCatChange}
+                            />
                     </CategoryWrapper>
                     <PriorityWrapper className="priority-wrapper">
                         <InputText className="input-text">Priority: </InputText>
                         <Select 
+                            value={this.props.selectedPriority}
                             options={priorityOptions} 
                             styles={customStyles}
-                            onChange={(e) => this.props.handleDropdownChange(e, 'priority')}/>
+                            onChange={this.props.handlePriorityChange}/>
                     </PriorityWrapper>
                     <DescriptionWrapper className="description-wrapper">
                         <InputText className="input-text">Task: </InputText>
@@ -66,7 +69,7 @@ class TaskModal extends Component{
                             <ModalButton className="submit" disabled={!category || !task || !priority ? true : false} onClick={this.props.handleUpdate}>
                             Update Task
                             </ModalButton> :
-                            <ModalButton className="update" disabled={(!category || !task || !priority ? true : false)} onClick={this.props.handleSubmit}>
+                            <ModalButton className="update" disabled={(!this.props.category || !task || !priority ? true : false)} onClick={this.props.handleSubmit}>
                             Add Task
                             </ModalButton>}
                         {this.props.update && <ModalButton onClick={this.props.handleDelete}>Delete</ModalButton>}

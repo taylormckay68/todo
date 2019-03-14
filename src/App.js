@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import axios from 'axios';
 import {AppWrapper, TaskCover} from './components/styled-components/App';
 import Navbar from './components/Navbar';
@@ -13,37 +12,45 @@ class App extends Component {
             taskModal: false,
             taskArr: [],
             category: '',
+            selectedCat: null,
             priority: '',
+            selectedPriority: null,
             task: '',
             info: '',
             id: '',
-            update: false
+            update: false,
+            selectedOption: null
         }
     }
     componentDidMount(){
         axios.get('/getDataArr').then(res => this.setState({taskArr: res.data}))
     }
-
+    handleCatChange = (selectedCat) => {
+        this.setState({ selectedCat, category: selectedCat.value });
+    }
+    handlePriorityChange = (selectedPriority) => {
+        this.setState({ selectedPriority, priority: selectedPriority.value })
+    }
     toggleModal = () => this.setState({
         taskModal: !this.state.taskModal,
         category: '',
         priority: '',
+        selectedCat: null,
+        selectedPriority: null,
         info: '',
         task: '',
         id: '',
-        update: false
+        update: false,
+        selectedOption: null
     })
 
-    handleDropdownChange = (event, name) => {
-        console.log(event, name);
-        this.setState({[name]: event.value});
-    }
     handleTextChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
 
     handleSubmit = (event) => {
             let {category, priority, info, task, taskArr} = this.state;
+            console.log(category, priority);
             axios.post('/addTask', {category, priority, info, task, complete: false}).then(res => {
                 this.setState({
                     taskArr: res.data,
@@ -93,6 +100,8 @@ class App extends Component {
             this.setState({
                 category: arr[0].category,
                 priority: arr[0].priority,
+                selectedCat: {value: arr[0].category, label: arr[0].category},
+                selectedPriority: {value: arr[0].priority, label: arr[0].priority},
                 task: arr[0].task,
                 info: arr[0].info,
                 id: arr[0].id,
@@ -110,11 +119,12 @@ class App extends Component {
                 className="task-modal"
                 {...this.state} 
                 toggle={this.toggleModal} 
-                handleDropdownChange={this.handleDropdownChange} 
                 handleTextChange={this.handleTextChange}
                 handleSubmit={this.handleSubmit} 
                 handleUpdate={this.handleUpdate}
-                handleDelete={this.handleDelete}/>
+                handleDelete={this.handleDelete}
+                handleCatChange={this.handleCatChange}
+                handlePriorityChange={this.handlePriorityChange}/>
             <Navbar className="navbar" toggle={this.toggleModal}/>
             <TaskList 
                 className="task-list"
