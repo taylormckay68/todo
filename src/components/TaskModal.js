@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Modal, ModalForm, ModalWrapper, CategoryWrapper, DescriptionWrapper, InfoWrapper, ButtonWrapper, ModalButton, InputText, InputBox, SelectWrapper, Option, PriorityWrapper, TextBox} from './styled-components/TaskModal';
+import Select from 'react-select'
+import {Modal, ModalWrapper, CategoryWrapper, DescriptionWrapper, InfoWrapper, ButtonWrapper, ModalButton, InputText, PriorityWrapper, TextBox, customStyles} from './styled-components/TaskModal';
 
 class TaskModal extends Component{
     constructor(props){
@@ -12,34 +13,33 @@ class TaskModal extends Component{
     
     render(){
         let {category, priority, update, task, info} = this.props;
+        const catOptions = [
+            {value: 'Work', label: 'Work'},
+            {value: 'Personal', label: 'Personal'},
+            {value: 'Shopping', label: 'Shopping'}
+        ];
+        const priorityOptions = [
+            {value: 'Low', label: 'Low'},
+            {value: 'Medium', label: 'Medium'},
+            {value: 'High', label: 'High'}
+        ];
+
         return(
             <Modal taskModal={this.props.taskModal} className="modal">
                 <ModalWrapper className="modal-wrapper">
                     <CategoryWrapper className="category-wrapper">
                         <InputText className="input-text">Category: </InputText>
-                        <SelectWrapper 
-                            className="select-wrapper"
-                            value={this.props.category} 
-                            name="category" 
-                            onChange={(e) => this.props.handleChange(e)}>
-                            <Option defaultValue="" disabled hidden/>
-                            {this.state.taskCategories.map((e, i) => {
-                                return <Option key={i}>{e}</Option>
-                            })}
-                        </SelectWrapper>
+                        <Select 
+                            options={catOptions} 
+                            styles={customStyles} 
+                            onChange={(e) => this.props.handleDropdownChange(e, 'category')}/>
                     </CategoryWrapper>
                     <PriorityWrapper className="priority-wrapper">
                         <InputText className="input-text">Priority: </InputText>
-                        <SelectWrapper 
-                            className="select-wrapper"
-                            value={this.props.priority} 
-                            name="priority" 
-                            onChange={(e) => this.props.handleChange(e)}>
-                            <Option defaultValue="" disabled hidden/>
-                            {this.state.priorities.map((e,i) => {
-                                return <Option key={i}>{e}</Option>
-                            })}
-                        </SelectWrapper>
+                        <Select 
+                            options={priorityOptions} 
+                            styles={customStyles}
+                            onChange={(e) => this.props.handleDropdownChange(e, 'priority')}/>
                     </PriorityWrapper>
                     <DescriptionWrapper className="description-wrapper">
                         <InputText className="input-text">Task: </InputText>
@@ -49,17 +49,17 @@ class TaskModal extends Component{
                             name="task" 
                             width={'100%'} 
                             height={'16px'}
-                            onChange={(e) => this.props.handleChange(e)}/>
+                            onChange={(e) => this.props.handleTextChange(e)}/>
                     </DescriptionWrapper>
                     <InfoWrapper className="info-wrapper">
-                        <InputText className="input-text">Additional Info</InputText>
+                        <InputText className="input-text" width='105px'>Additional Info</InputText>
                         <TextBox 
                             className="text-box" 
                             value={this.props.info} 
                             name="info" 
                             height={"100px"} 
                             width={'100%'} 
-                            onChange={(e) => this.props.handleChange(e)}/>
+                            onChange={(e) => this.props.handleTextChange(e)}/>
                     </InfoWrapper>
                     <ButtonWrapper className="button-wrapper">
                         {this.props.update ? 

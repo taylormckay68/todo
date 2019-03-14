@@ -34,7 +34,13 @@ class App extends Component {
         update: false
     })
 
-    handleChange = (event) => {this.setState({[event.target.name]: event.target.value});}
+    handleDropdownChange = (event, name) => {
+        console.log(event, name);
+        this.setState({[name]: event.value});
+    }
+    handleTextChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
 
     handleSubmit = (event) => {
             let {category, priority, info, task, taskArr} = this.state;
@@ -104,7 +110,8 @@ class App extends Component {
                 className="task-modal"
                 {...this.state} 
                 toggle={this.toggleModal} 
-                handleChange={this.handleChange} 
+                handleDropdownChange={this.handleDropdownChange} 
+                handleTextChange={this.handleTextChange}
                 handleSubmit={this.handleSubmit} 
                 handleUpdate={this.handleUpdate}
                 handleDelete={this.handleDelete}/>
