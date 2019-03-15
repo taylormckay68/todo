@@ -78,12 +78,12 @@ export const CategoryHeader = styled.div`
 
 `
 export const TaskHeader = styled.div`
-    width: calc(100vw - 155px);
+    width: calc(100vw - 168px);
     line-height: 35px;
     margin-left: 10px;
     font-weight: bolder;
     @media (min-width: 450px) {
-        width: calc(50% - 89px);
+        width: calc(50% - 103px);
     }
 `
 export const InfoHeader = styled.div`
