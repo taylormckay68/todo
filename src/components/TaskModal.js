@@ -23,7 +23,7 @@ class TaskModal extends Component{
     
     
     render(){
-        let {category, priority, update, task, info, categories} = this.props;
+        let {category, priority, task, categories} = this.props;
         let catOptions = categories.map(e => {return {value: e, label: e}})
         return(
             <Modal taskModal={this.props.taskModal} className="modal">

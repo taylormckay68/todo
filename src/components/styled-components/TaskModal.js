@@ -1,5 +1,4 @@
-import styled, {keyframes} from 'styled-components';
-import ReactSelect from 'react-select';
+import styled from 'styled-components';
 
 export const Modal = styled.div`
     height: 340px;
@@ -23,7 +22,6 @@ export const ModalWrapper= styled.div`
     justify-content: space-between;
     height: 100%;
     box-sizing: border-box;
-    /* align-content: space-around; */
     padding: 12px;
 `
 

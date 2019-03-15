@@ -3,10 +3,7 @@ import {TaskListWrapper, TaskWrapper, TaskText, TaskInfoWrapper, TaskLabel, Cate
 import Switch from "react-switch";
 
 class TaskList extends Component{
-    constructor(props){
-        super(props);
 
-    }
     render(){
         return(
             <TaskListWrapper className="task-list-wrapper">

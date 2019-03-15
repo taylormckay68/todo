@@ -3,13 +3,6 @@ import {NavWrapper, AddButton, NavText, NavContentContainer} from './styled-comp
 
 
 class Navbar extends Component{
-    constructor(props){
-        super(props);
-        
-        this.state = {
-            taskModal: false,
-        }
-    }
     render(){
         return(
             <NavWrapper className="nav-wrapper">
