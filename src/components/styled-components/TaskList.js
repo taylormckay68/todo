@@ -102,8 +102,8 @@ export const PriorityDot = styled.div`
     margin-left: 10px;
     border-radius: 5px;
     background-color: ${props => {
-        if(props.priority === 'High') return 'rgba(255,0,0)'
-        if(props.priority === 'Medium') return 'rgba(255,255,0)'
+        if(props.priority === 'High') return 'red'
+        if(props.priority === 'Medium') return 'yellow'
         if(props.priority === 'Low') return 'green'
         }
     };
