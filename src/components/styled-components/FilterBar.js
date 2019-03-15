@@ -10,5 +10,5 @@ export const FilterWrapper = styled.div`
     box-sizing: border-box;
 `
 export const FilterText = styled.p`
-
+    margin-right: 10px;
 `

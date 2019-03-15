@@ -3,13 +3,13 @@ const express = require('express')
     , path = require('path')
     , bodyParser = require('body-parser')
     , massive = require('massive')
-    , port = process.env.PORT || 8081
+    , port = process.env.PORT || 8080
     , app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('build'));
 
-massive(process.env.CONNECTION_STRING).then(db => {
+massive(process.env.BACKUP_CONNECTION_STRING).then(db => {
     console.log('connected')
     app.set('db', db);
 }).catch(err => {

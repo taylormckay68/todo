@@ -2,7 +2,7 @@ export const customStyles = {
     control: (provided, state) => ({
         ...provided,
         background: state.isFocused ? '#CED1D5' : '#E7E8EA',
-        border: '0',
+        border: '1px solid',
         width: '175px',
         'border-radius': '2px',
         'box-shadow': 'none',
